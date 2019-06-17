@@ -10,17 +10,16 @@ import java.util.Stack;
 
 public class Calculator
 {
-    private MutableSet<Token> tokens = UnifiedSet.newSet();
-    private Stack<Float> stack = new Stack<>();
-
     public Float
     evaluate(ImmutableList<Token> tokens)
     {
         Float result = 0.0f;
 
+        Stack<Float> stack = new Stack<>();
+
         if (tokens != null && tokens.size() > 0)
         {
-            tokens.each(token -> token.evaluate(this.stack));
+            tokens.each(token -> token.evaluate(stack));
 
             result = stack.pop();
         }
