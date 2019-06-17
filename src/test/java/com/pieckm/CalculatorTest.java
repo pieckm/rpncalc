@@ -70,8 +70,20 @@ public class CalculatorTest
         Token value1 = new Operand(val1);
         Token value2 = new Operand(val2);
 
-
         Assert.assertEquals((Float)(val1 - val2),
                 (Float)this.calculator.evaluate(FastList.newListWith(value1, value2, subtraction).toImmutable()));
+    }
+
+    @Test
+    public void testComplexExpression()
+    {
+        Token subtraction = new Subtraction();
+        Token addition = new Addition();
+        Token ten = new Operand(10.0f);
+        Token five = new Operand(5.0f);
+        Token three = new Operand(3.0f);
+
+        Assert.assertEquals((Float)8.0f,
+                (Float)this.calculator.evaluate(FastList.newListWith(ten, five, subtraction, three, addition).toImmutable()));
     }
 }
